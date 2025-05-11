@@ -12,6 +12,7 @@
         <button type="submit">Send</button>
     </form>
     <div id="bot-response"></div>
+    <audio id="audio-player" controls></audio>
 
     <script>
         document.getElementById('chat-form').addEventListener('submit', function(event) {
@@ -22,6 +23,9 @@
                 .then(response => response.json())
                 .then(data => {
                     document.getElementById('bot-response').innerHTML = `<strong>Bot:</strong> ${data.response}`;
+                    const audioPlayer = document.getElementById('audio-player');
+                    audioPlayer.src = data.audio_url; // Set the audio source to the generated file
+                    audioPlayer.play(); // Play the audio
                 });
         });
     </script>
